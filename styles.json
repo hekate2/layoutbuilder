@@ -1,0 +1,385 @@
+{
+  "background": {
+    "background": {
+      "input": ["checkbox"]
+    },
+    "background-color": {
+      "input": ["color"]
+    },
+    "background-image": {
+      "input": ["file"]
+    },
+    "background-size": {
+      "input": ["select"],
+      "default": [
+        "...",
+        "auto",
+        "cover",
+        "contain",
+        "100% 100%"
+      ]
+    },
+    "background-attachment": {
+      "input": ["select"],
+      "default": [
+        "...",
+        "initial",
+        "fixed",
+        "local"
+      ]
+    },
+    "background-repeat": {
+      "input": ["select"],
+      "default": [
+        "...",
+        "repeat",
+        "no-repeat",
+        "repeat-y",
+        "repeat-x"
+      ]
+    }
+  },
+  "border": {
+    "border-width": {
+      "class": "units",
+      "input": ["number", "select"],
+      "default": [
+        "px"
+      ]
+    },
+    "border-style": {
+      "input": ["select"],
+      "default": [
+        "...",
+        "solid",
+        "none",
+        "dotted",
+        "dashed",
+        "inset",
+        "outset"
+      ]
+    },
+    "border-color": {
+      "input": ["color"]
+    }
+  },
+  "text": {
+    "color" : {
+      "input": ["color"]
+    },
+    "font-family": {
+      "input": ["select"],
+      "default": [
+        "...",
+        "Times New Roman",
+        "Abril Fatface",
+        "Anton",
+        "Archivo Black",
+        "Archivo",
+        "Arial",
+        "Barriecito",
+        "Bigelow Rules",
+        "Chonburi",
+        "Coiny",
+        "Concert One",
+        "Courier",
+        "Cuprum",
+        "Domine",
+        "Eater",
+        "Emilys Candy",
+        "Exo 2",
+        "Fascinate Inline",
+        "Faster One",
+        "Flavors",
+        "Freckle Face",
+        "Fredoka One",
+        "Frijole",
+        "Galindo",
+        "Gloria Hallelujah",
+        "Gluten",
+        "Goblin One",
+        "Goldman",
+        "Griffy",
+        "Hanalei",
+        "Helvetica",
+        "Henny Penny",
+        "Jacques Francois Shadow",
+        "Kanit",
+        "Libre Barcode 128 Text",
+        "Londrina Shadow",
+        "Love Ya Like A Sister",
+        "Lucida Console",
+        "Luckiest Guy",
+        "Metal",
+        "Metamorphous",
+        "Modak",
+        "Monaco",
+        "Moo Lah Lah",
+        "Oi",
+        "Padauk",
+        "Papyrus",
+        "Paytone One",
+        "Pirata One",
+        "Playfair Display",
+        "Press Start 2P",
+        "Ranchers",
+        "Ribeye Marrow",
+        "Rubik Beastly",
+        "Rubik Bubbles",
+        "Rubik Microbe",
+        "Rubik Moonrocks",
+        "Rubik Puddles",
+        "Rubik Wet Paint",
+        "Russo One",
+        "Sail",
+        "Sigmar One",
+        "Single Day",
+        "Smokum",
+        "Sofadi One",
+        "Special Elite",
+        "Syncopate",
+        "Teko",
+        "Ultra",
+        "UnifrakturMaguntia",
+        "Verdana",
+        "VT323",
+        "Yatra One"
+      ]
+    },
+    "text-align" : {
+      "input": ["select"],
+      "default": [
+        "...",
+        "left",
+        "center",
+        "right"
+      ]
+    },
+    "font-weight": {
+      "input": ["select"],
+      "default" : [
+        "...",
+        "normal",
+        "thin",
+        "bold"
+      ]
+    },
+    "font-style": {
+      "input": ["select"],
+      "default" : [
+        "...",
+        "normal",
+        "italic"
+      ]
+    },
+    "font-size": {
+      "class": "units",
+      "input": ["number", "select"],
+      "default": [
+        "pt",
+        "px",
+        "%",
+        "em",
+        "rem"
+      ]
+    },
+    "text-decoration-line": {
+      "input": ["select"],
+      "default": [
+        "...",
+        "none",
+        "underline",
+        "line-through",
+        "overline"
+      ]
+    },
+    "text-decoration-style": {
+      "input": ["select"],
+      "default": [
+        "...",
+        "none",
+        "solid",
+        "dashed",
+        "dotted",
+        "double",
+        "wavy"
+      ]
+    }
+  },
+  "layout + dimensions" : {
+    "height" : {
+      "class": "units",
+      "input": ["number", "select"],
+      "default": [
+        "px",
+        "%",
+        "vh",
+        "em",
+        "rem"
+      ]
+    },
+    "width" : {
+      "class": "units",
+      "input": ["number", "select"],
+      "default": [
+        "px",
+        "vw",
+        "%",
+        "em",
+        "rem"
+      ]
+    },
+    "max-height" : {
+      "classs": "units",
+      "input": ["number", "select"],
+      "default": [
+        "px",
+        "vh",
+        "em",
+        "rem"
+      ]
+    },
+    "max-width" : {
+      "classs": "units",
+      "input": ["number", "select"],
+      "default": [
+        "px",
+        "vw",
+        "em",
+        "rem"
+      ]
+    },
+    "min-height" : {
+      "classs": "units",
+      "input": ["number", "select"],
+      "default": [
+        "px",
+        "vh",
+        "em",
+        "rem"
+      ]
+    },
+    "min-width" : {
+      "classs": "units",
+      "input": ["number", "select"],
+      "default": [
+        "px",
+        "vw",
+        "em",
+        "rem"
+      ]
+    },
+    "left" : {
+      "class": "units",
+      "input": ["number", "select"],
+      "default": [
+        "px",
+        "%",
+        "em",
+        "rem"
+      ]
+    },
+    "top" : {
+      "class": "units",
+      "input": ["number", "select"],
+      "default": [
+        "px",
+        "%",
+        "em",
+        "rem"
+      ]
+    },
+    "padding" : {
+      "class": "units",
+      "input": ["number", "select"],
+      "default": [
+        "px",
+        "%",
+        "em",
+        "rem"
+      ]
+    },
+    "margin" : {
+      "class": "units",
+      "input": ["number", "select"],
+      "default": [
+        "px",
+        "%",
+        "em",
+        "rem"
+      ]
+    },
+    "position": {
+      "input": ["select"],
+      "default" : [
+        "...",
+        "static",
+        "initial",
+        "absolute",
+        "relative",
+        "fixed",
+        "sticky"
+      ]
+    },
+    "display": {
+      "input": ["select"],
+      "default": [
+        "...",
+        "block",
+        "inline",
+        "inline-block",
+        "flex"
+      ]
+    }
+  },
+  "flex" : {
+    "flex-direction" : {
+      "input": ["select"],
+      "default": [
+        "...",
+        "row",
+        "row-reverse",
+        "column",
+        "column-reverse"
+      ]
+    },
+    "justify-content" : {
+      "input": ["select"],
+      "default": [
+        "...",
+        "normal",
+        "space-around",
+        "space-between",
+        "center",
+        "flex-end",
+        "flex-start"
+      ]
+    },
+    "align-items" : {
+      "input": ["select"],
+      "default": [
+        "...",
+        "normal",
+        "space-around",
+        "space-between",
+        "center",
+        "flex-end",
+        "flex-start",
+        "stretch"
+      ]
+    },
+    "flex-wrap" : {
+      "input" : ["select"],
+      "default": [
+        "...",
+        "wrap",
+        "nowrap"
+      ]
+    }
+  },
+  "image" : {
+    "src": {
+      "input": ["file"]
+    }
+  }
+}

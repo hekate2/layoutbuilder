@@ -1,0 +1,213 @@
+<!--
+  Author: hekate.neocities.org
+  Date: 05/31/2022
+  Description: A page which allows a user to create their own website.
+  Contains templates for menus that allow the user to create and edit
+  elements, as well as notes about the tool, a save feature, and custom
+  color palette.
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hekate's Layout Builder</title>
+    <script src="test.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="fonts/stylesheet.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this application!</noscript>
+    <aside class="menu hidden" id="save">
+      <button class="collapse">_</button>
+      <div>
+        <h1>
+          Click the button below to save your code!
+        </h2>
+        <h2>
+          ** Remember to place all images into a folder with your downloaded files for them to properly display! **
+        </h2>
+        <button id="save-btn">Save My Code!</button>
+      </div>
+    </aside>
+    <aside class="menu hidden" id="close">
+      <button class="close">x</button>
+      <h1>Are you sure you want to delete <span>???</span> ?</h1>
+      <h2>**This will delete all elements inside!**</h2>
+      <div>
+        <button class="remove">Yes!</button>
+        <button class="cancel">No!</button>
+      </div>
+    </aside>
+    <aside class="menu hidden" id="newMenu">
+      <button class="close">x</button>
+      <h1>What would you like to add ?</h1>
+      <h2>You are adding into <span>???</span></h2>
+      <form>
+        <h3>Containers</h3>
+        <label>
+          <input type="radio" name="elem" value="aside" data-type="div">
+          <p>Sidebar</p>
+        </label>
+        <label>
+          <input type="radio" name="elem" value="header" data-type="div">
+          <p>Header</p>
+        </label>
+        <label>
+          <input type="radio" name="elem" value="footer" data-type="div">
+          <p>Footer</p>
+        </label>
+        <label>
+          <input type="radio" name="elem" value="div" data-type="div">
+          <p>Container</p>
+        </label>
+        <h3>Text</h3>
+        <label>
+          <input type="radio" name="elem" value="h1" data-type="text">
+          <p>Title</p>
+        </label>
+        <label>
+          <input type="radio" name="elem" value="h2" data-type="text">
+          <p>Subtitle</p>
+        </label>
+        <label>
+          <input type="radio" name="elem" value="h3" data-type="text">
+          <p>Heading</p>
+        </label>
+        <label>
+          <input type="radio" name="elem" value="p" data-type="text">
+          <p>Paragraph</p>
+        </label>
+        <h3>Image</h3>
+        <label>
+          <input type="radio" name="elem" value="img" data-type="img">
+          <p>Image</p>
+        </label>
+        <p class="paste">Paste an element</p>
+        <button class="submit">Add!</button>
+      </form>
+    </aside>
+    <aside class="menu hidden editMenu" id="editMenu">
+      <button class="close">x</button>
+      <h1>What would you like to change ?</h1>
+      <h2>You are editing <span>DIV</span></h2>
+      <div></div>
+      <p class="copy">Copy this element</p>
+    </aside>
+    <article id="welcome" class="menu">
+      <button class="close">x</button>
+      <button class="collapse">_</button>
+      <h1>Website Builder 1.0 !</h1>
+      <p>Welcome to the website builder! Here's how to use it:</p>
+      <ul>
+        <li>Right click to add a new element</li>
+        <li>Left click on an element to edit it.</li>
+        <li>Double click an element to delete it.</li>
+      </ul>
+      <p>
+        Have any requests?  Anything going wrong?  Leave a message <a href="" target="_blank" class="text-u">here</a>.
+      </p>
+      <p id="credit">
+        This tool was made by <a href="https://hekate.neocities.org/" target="_blank">hekate.neocities.org</a> in 2022!
+      </p>
+    </article>
+    <article id="notes" class="menu hidden">
+      <button class="collapse">_</button>
+      <div>
+        <h1>Notes on using this tool</h1>
+        <h2>
+          Hints
+        </h2>
+        <ul>
+          <li>
+            To make an element, such as an image, align with the content- set its position to "static".  This will also remove
+            draggable/resizable functionality, but this can be reset by setting the position to "absolute" or "relative".
+          </li>
+        </ul>
+        <h2>Responsive design</h2>
+        <p>
+          Websites made with this tool may not look the same across devices
+          and browsers.  To ensure that your design is responsive, keep this
+          in mind:
+        </p>
+        <ul>
+          <li>
+            If you want an element to span the page, instead of dragging it
+            out set the width to 100%!
+          </li>
+          <li>
+            If you want an element's position to change as you scale the page,
+            set its left/top position to a % value (like 50%).
+          </li>
+        </ul>
+        <h2>Aligning text</h2>
+        <ul>
+          <li>
+            By default, text isn't draggable nor resizeable.  To control
+            its position, it should be wrapped in a seperate container, or
+            the properties of its parent container should be changed.
+            I will try to make this easier in future updates.
+          </li>
+        </ul>
+        <h2>Centering content</h2>
+        <p>
+          The easiest way to align content in the center is to use
+          flex.
+        </p>
+        <ol>
+          <li>
+            Set the display to 'flex'
+          </li>
+          <li>
+            If you want your content to flow up and down, set flex-direction to "column"
+          </li>
+          <li>
+            To align horizontally, set align-items to "center"
+          </li>
+          <li>
+            To align vertically, set justify-content to "center"
+          </li>
+        </ol>
+        <p>
+          However, there are many ways to do this, depending on the
+          content you're trying to center!
+        </p>
+        <h2>
+          Fonts
+        </h2>
+        <ul>
+          <li>
+            Most of these fonts are taken from <a href="https://fonts.google.com/" target="_blank">Google Fonts</a>
+          </li>
+          <li>
+            Custom fonts are not currently supported - sorry! :-(
+          </li>
+        </ul>
+        <h2>Using flex properties</h2>
+        <ul>
+          <li>
+            Flex rules will only work inside of a flex container
+            (container with display set to flex)
+          </li>
+          <li>For more information about flex, <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank">read here!</a></li>
+        </ul>
+      </div>
+    </article>
+    <aside id="colorchoose">
+      <input type="color" value="#4754de">
+    </aside>
+    <nav>
+      <div>
+        Notes
+        <a href="#notes">↑</a>
+      </div>
+      <div>
+        Save
+        <a href="#save">↑</a>
+      </div>
+    </nav>
+    <main style="margin: 0;height: 100vh;width: 100%;"></main>
+  </body>
+</html>

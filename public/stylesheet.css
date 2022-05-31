@@ -1,0 +1,413 @@
+/*
+  Author: hekate.neocities.org
+  Date: 05/31/2022
+  Description: Contains the styles for a page which allows the
+  user to create their own website.  By default, it applies a
+  blue color scheme/font.  Styles only elements that won't affect
+  the appearance of the user-created "website".
+*/
+:root {
+  --primary: #4754de;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+}
+
+button {
+  background-color: white;
+  border: 1px solid var(--primary);
+}
+
+.menu input[type="file"] {
+  max-width: 100%;
+}
+
+.menu h1,
+.menu h3 {
+  font-weight: normal;
+}
+
+nav,
+.menu,
+.menu button,
+.menu input {
+  font-family: 'serious1';
+  font-size: 11px;
+}
+
+.menu,
+#welcome,
+body > nav {
+  z-index: 100;
+}
+
+.menu {
+  position: absolute;
+}
+
+body > nav {
+  position: fixed;
+}
+
+.menu,
+#welcome {
+  background-color: white;
+}
+
+.menu {
+  overflow: hidden;
+  padding: 10px;
+  border: 1px solid #000;
+  color: var(--primary);
+  max-width: 150px;
+  top: 0;
+  left: 0;
+}
+
+.editMenu {
+  max-width: 300px;
+}
+
+.editMenu input,
+.editMenu select {
+  border: none;
+  border-bottom: 1px solid #000;
+  width: 100%;
+  margin: 0 5px;
+  font-family: 'serious1';
+  font-size: 11px;
+}
+
+input[type="checkbox"] {
+  width: 13px;
+}
+
+input[type="color"] {
+	-webkit-appearance: none;
+	border: none;
+	width: 15px;
+	height: 15px;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+	border: none;
+}
+
+.menu h1,
+.menu h3 {
+  color: black;
+}
+
+.menu h2 {
+  color: var(--primary);
+  opacity: .75;
+}
+
+.menu h3 {
+  font-size: 1em;
+}
+
+.menu label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.menu input[type='radio'] {
+  margin: 1px 0;
+  appearance: checkbox;
+}
+
+.menu label p {
+  margin: 0 5px;
+}
+
+.menu h1,
+.menu h2 {
+  font-size: 1em;
+}
+
+.menu h2 {
+  margin-top: 0;
+}
+
+.menu > button,
+#welcome > button {
+  margin-bottom: 5px;
+  color: white;
+  text-shadow: 1px 1px #000;
+}
+
+#welcome a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#welcome a:hover {
+  color: aqua;
+}
+
+#welcome,
+#notes {
+  color: #000;
+  padding: 5px;
+  width: 50%;
+  max-width: 300px;
+}
+
+#notes > div {
+  overflow-y: scroll;
+}
+
+#welcome {
+  left: calc(50% - 150px);
+  top: calc(50% - 100px);
+  max-height: 200px;
+  height: 50%;
+}
+
+#notes {
+  max-height: 100vh;
+}
+
+#notes div {
+  overflow-y: scroll;
+  max-height: calc(100vh - 20px);
+}
+
+.submit {
+  margin: 0;
+  margin-top: 5px;
+}
+
+#colorchoose {
+  border: 1px solid #000;
+  display: inline-block;
+  height: 17px;
+  padding: 3px;
+  margin-right: 5px;
+  position: fixed;
+  z-index: 2000;
+  left: calc(100% - 30px);
+  top: 5px;
+  background-color: white;
+}
+
+#colorchoose input {
+  width: 17px;
+  height: 17px;
+  display: inline-block;
+  border: 1px solid;
+  padding: 0;
+}
+
+body > nav {
+  height: 20px;
+  width: calc(100% - 20px);
+  left: 10px;
+  top: calc(100vh - 20px);
+  display: flex;
+  align-items: flex-start;
+}
+
+body > nav div {
+  width: 10%;
+  overflow: hidden;
+  max-width: 90px;
+  display: flex;
+  align-items: center;
+  background-color: var(--primary);
+  margin-left: 2px;
+  padding: 0 5px;
+  height: 100%;
+  justify-content: space-between;
+}
+
+body > nav a {
+  color: #000;
+}
+
+body > nav div,
+#welcome button,
+.menu button {
+  border: 1px solid #000;
+  background: linear-gradient(white, var(--primary));
+}
+
+main {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#credit {
+  position: absolute;
+  top: calc(100% - 32px);
+  text-align: center;
+  color: var(--primary);
+}
+
+#welcome a.text-u {
+  text-decoration: underline;
+}
+
+.menu span {
+  background-color: yellow
+}
+
+.newItem {
+  width: 100px;
+  height: 100px;
+  background-color: gainsboro;
+  border: 1px solid #000;
+}
+
+img.newItem {
+  background-color: transparent;
+}
+
+h1.newItem,
+h2.newItem,
+h3.newItem,
+p.newItem,
+marquee.newItem {
+  border: none;
+  overflow-wrap: break-word;
+  position: static !important;
+  display: block;
+  width: auto;
+  height: auto;
+  margin: 0;
+}
+
+#close {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+#close .close {
+  align-self: flex-start;
+}
+
+.glow_box {
+  animation: 5s glow-box;
+}
+
+.glow_text {
+  animation: 5s glow-text;
+}
+
+main {
+  font-family: 'Times New Roman', Times, serif;
+}
+
+h1.newItem,
+h2.newItem,
+h3.newItem,
+p.newItem,
+marquee.newItem {
+  background: none;
+}
+
+#notes ul,
+#welcome ul {
+  padding-left: 20px;
+}
+
+#notes h1,
+#welcome h1 {
+  font-size: 1.3em;
+}
+
+.menu > div > ul {
+  color: black;
+  padding-left: 15px;
+  list-style-type: disclosure-closed;
+}
+
+.menu > div > ul ul {
+  display: none;
+}
+
+/* FIX ME!  IM UGLY!! ****************************************/
+.menu > div > ul > li.active {
+  list-style-type: "\25BC";
+}
+
+.menu > div > ul > li.active ul {
+  display: block;
+}
+
+.menu > div > ul ul {
+  color: var(--primary);
+  list-style-type: none;
+  padding: 10px 0;
+  margin-left: -12px;
+}
+
+.menu > div > ul ul li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 20px;
+}
+
+.menu > div div {
+  display: flex;
+  height: 17px;
+  justify-content: space-between;
+}
+
+.menu input[type="number"] {
+  width: 50px;
+}
+
+#fileUpload form div {
+  margin: 10px 0;
+}
+
+#save > div {
+  text-align: center;
+}
+/* ANIMATIONS */
+@keyframes glow-box {
+  50% {box-shadow: 0px 0px 3px 3px var(--primary);}
+}
+
+@keyframes glow-text {
+  50% {
+    text-shadow:
+    0px 0px 3px var(--primary),
+    0px 0px 3px var(--primary),
+    0px 0px 3px var(--primary);
+  }
+}
+
+.ui-resizable { position: absolute } /* May cause problems */
+.ui-resizable-handle { position: absolute; font-size: 0.1px; display: block; }
+.ui-resizable-disabled { display: none; }
+.ui-resizable-n { cursor: n-resize; height: 7px; width: 100%; top: -5px; left: 0; }
+.ui-resizable-s { cursor: s-resize; height: 7px; width: 100%; bottom: -5px; left: 0; }
+.ui-resizable-e { cursor: e-resize; width: 7px; right: -5px; top: 0; height: 100%; }
+.ui-resizable-w { cursor: w-resize; width: 7px; left: -5px; top: 0; height: 100%; }
+.ui-resizable-se { cursor: se-resize; width: 12px; height: 12px; right: 1px; bottom: 1px; }
+.ui-resizable-sw { cursor: sw-resize; width: 9px; height: 9px; left: -5px; bottom: -5px; }
+.ui-resizable-nw { cursor: nw-resize; width: 9px; height: 9px; left: -5px; top: -5px; }
+.ui-resizable-ne { cursor: ne-resize; width: 9px; height: 9px; right: -5px; top: -5px;}
+
+img.newItem {
+  resize: both;
+}

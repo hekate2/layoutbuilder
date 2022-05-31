@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'v5_prophitdot';
+    src: url('v5prd___-webfont.woff2') format('woff2'),
+         url('v5prd___-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'serious1';
+    src: url('Serious1.woff2') format('woff2'),
+        url('Serious1.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
