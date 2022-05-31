@@ -510,7 +510,7 @@
   }
 
   function paste(event) {
-    if (clipboard.lenght === 0) {
+    if (clipboard.length === 0) {
       alert("You haven't copied anything.");
     } else {
       let par = qs(event.target.closest(".menu").querySelector("span").dataset["value"]);
