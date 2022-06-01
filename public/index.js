@@ -113,8 +113,8 @@
       if (elem.tagName !== "MAIN") {
         if (def) {
           addStyles(elem);
-          elem.classList.add("glow_box");
         }
+        elem.classList.add("glow_box");
         elem.addEventListener("dblclick", function(event) {
           preventClick(event);
           if (timer) {
@@ -515,7 +515,8 @@
     } else {
       let par = qs(event.target.closest(".menu").querySelector("span").dataset["value"]);
       let newElem = clipboard.cloneNode("true");
-      makeEditable([newElem]);
+      newElem.id = "id_" + Date.now();
+      makeEditable([newElem], false);
       console.log(newElem)
       par.appendChild(newElem);
     }
