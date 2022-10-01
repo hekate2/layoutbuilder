@@ -1,5 +1,4 @@
 /*
-  Author: hekate.neocities.org
   Date: 05/31/2022
   Description: Contains the styles for a page which allows the
   user to create their own website.  By default, it applies a
@@ -256,6 +255,7 @@ main {
   top: calc(100% - 32px);
   text-align: center;
   color: var(--primary);
+  width: 100%;
 }
 
 #welcome a.text-u {
