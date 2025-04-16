@@ -65,6 +65,10 @@ body > nav {
   left: 0;
 }
 
+.menu li {
+  cursor: pointer;
+}
+
 .editMenu {
   max-width: 300px;
 }

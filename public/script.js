@@ -8,7 +8,10 @@
 (function() {
   const DFONTS = ["Verdana", "Times New Roman", "Helvetica"];
   const BASEURL = "https://fonts.googleapis.com/css2?family=";
+  
   let clipboard = [];
+  let broadStyleOptions;
+  let specificStyleOptions;
 
   window.addEventListener("load", init);
   window.addEventListener("beforeunload", function(event) {
@@ -18,7 +21,9 @@
   /**
    * Sets up page functionality- makes tabs collapsable and body editable!
    */
-  function init() {
+  async function init() {
+    await getLayoutOptions();
+    
     id("save-btn").addEventListener("click", save);
     $(".menu").draggable().resizable();
 
@@ -41,6 +46,20 @@
         openTab(e);
       });
     });
+  }
+
+  /** Reads style options from file for later access */
+  async function getLayoutOptions() {
+    try {
+      let f1 = await fetch("data/objects.json");
+      let f2 = await fetch("data/styles.json")
+
+      broadStyleOptions = await f1.json();
+      specificStyleOptions = await f2.json();
+
+    } catch(err) {
+      alert("An error occurred: " + err);
+    }
   }
 
   /**
@@ -222,97 +241,101 @@
    */
   async function buildEditStyles(menu, event) {
     let res = await getEditStyles(event);
-    let ul = document.createElement("ul");
 
-    for (let i = 0; i < res.length; i++) {
-      let par = document.createElement("li");
-      let parText = document.createElement("p");
-      let styles = await getAllStyles(res[i]);
-      let sub = document.createElement("ul");
+    if (res) {
+      let ul = document.createElement("ul");
 
-      parText.addEventListener("click", function(event) {
-        this.parentNode.classList.toggle("active");
-      });
+      for (let i = 0; i < res.length; i++) {
+        let par = document.createElement("li");
+        let parText = document.createElement("p");
+        let styles = await getAllStyles(res[i]);
+        let sub = document.createElement("ul");
 
-      parText.textContent = res[i];
-      par.appendChild(parText);
+        parText.addEventListener("click", function(event) {
+          this.parentNode.classList.toggle("active");
+        });
 
-      let keys = Object.keys(styles);
-      let vals = Object.values(styles);
+        parText.textContent = res[i];
+        par.appendChild(parText);
 
-      for (let j = 0; j < keys.length; j++) {
-        let li = document.createElement("li");
-        let dv = document.createElement("div");
+        let keys = Object.keys(styles);
+        let vals = Object.values(styles);
 
-        li.textContent = keys[j] + ": ";
-        
-        for (let k = 0; k < vals[j]['input'].length; k++) {
-          let lab = document.createElement("label");
-          let type = vals[j]['input'][k];
-          let input;
+        for (let j = 0; j < keys.length; j++) {
+          let li = document.createElement("li");
+          let dv = document.createElement("div");
 
-          if (type === "select") {
-          input = document.createElement("select");
-          if (vals[j]['class']) {
-            input.classList.add(vals[j]['class']);
-          }
-
-          if (!vals[j]['default']) {
-            alert(
-              "Error: No defaults were set for property " +
-              keys[j] +
-              ". Please contact the developer.")
-          } else {
-            for (let l = 0; l < vals[j]['default'].length; l++) {
-              let opt = document.createElement("option");
-              opt.value = vals[j]['default'][l];
-              opt.textContent = vals[j]['default'][l];
-              let units = (event.target.style[keys[j]]).match(/([a-zA-Z%]+)(?:\^(-?\d+))?/);
-              let font = (event.target.style[keys[j]]).match(/([a-zA-Z0-9]+\s?)+/);
-
-              if ( opt.value === event.target.style[keys[j]]) {
-                opt.selected = true;
-              } else if ( units && opt.value === units[0]) {
-                opt.selected = true;
-              } else if ( font && opt.value === font[0]) {
-                opt.selected = true;
-              }
-              input.appendChild(opt);
-            }
-          }
-          } else {
-            let setValue = event.target.style[keys[j]];
-            input = document.createElement("input");
-            input.type = vals[j]['input'][k];
-            
-            if (type === "checkbox") {
-              input.checked = true;
-            }
+          li.textContent = keys[j] + ": ";
           
-          if (setValue && type !== "file") {
-            if (!isNaN(parseInt(setValue))) {
-              input.value = parseInt(setValue);
-            } else if (type === "color") {
-              input.value = rgbToHex(setValue);
+          for (let k = 0; k < vals[j]['input'].length; k++) {
+            let lab = document.createElement("label");
+            let type = vals[j]['input'][k];
+            let input;
+
+            if (type === "select") {
+            input = document.createElement("select");
+            if (vals[j]['class']) {
+              input.classList.add(vals[j]['class']);
+            }
+
+            if (!vals[j]['default']) {
+              alert(
+                "Error: No defaults were set for property " +
+                keys[j] +
+                ". Please contact the developer.")
             } else {
-              input.value = setValue;
+              for (let l = 0; l < vals[j]['default'].length; l++) {
+                let opt = document.createElement("option");
+                opt.value = vals[j]['default'][l];
+                opt.textContent = vals[j]['default'][l];
+                let units = (event.target.style[keys[j]]).match(/([a-zA-Z%]+)(?:\^(-?\d+))?/);
+                let font = (event.target.style[keys[j]]).match(/([a-zA-Z0-9]+\s?)+/);
+
+                if ( opt.value === event.target.style[keys[j]]) {
+                  opt.selected = true;
+                } else if ( units && opt.value === units[0]) {
+                  opt.selected = true;
+                } else if ( font && opt.value === font[0]) {
+                  opt.selected = true;
+                }
+                input.appendChild(opt);
+              }
+            }
+            } else {
+              let setValue = event.target.style[keys[j]];
+              input = document.createElement("input");
+              input.type = vals[j]['input'][k];
+              
+              if (type === "checkbox") {
+                input.checked = true;
+              }
+            
+            if (setValue && type !== "file") {
+              if (!isNaN(parseInt(setValue))) {
+                input.value = parseInt(setValue);
+              } else if (type === "color") {
+                input.value = rgbToHex(setValue);
+              } else {
+                input.value = setValue;
+              }
             }
           }
+
+          input.addEventListener('input', captureInput);
+          lab.appendChild(input);
+          dv.appendChild(lab);
+          }
+          li.appendChild(dv);
+          sub.appendChild(li);
         }
 
-        input.addEventListener('input', captureInput);
-        lab.appendChild(input);
-        dv.appendChild(lab);
-        }
-        li.appendChild(dv);
-        sub.appendChild(li);
+        par.appendChild(sub);
+        ul.appendChild(par);
       }
 
-      par.appendChild(sub);
-      ul.appendChild(par);
+      menu.querySelector("div").appendChild(ul);
     }
-
-    menu.querySelector("div").appendChild(ul);
+    
   }
 
   /**
@@ -411,11 +434,15 @@
    */
   async function getAllStyles(style) {
     try {
-      let res = await fetch("/styles/" + style + "/properties");
-      await statusCheck(res);
-      res = await res.json();
+      // let res = await fetch("/api/styles/" + style + "/properties");
+      // await statusCheck(res);
+      // res = await res.json();
 
-      return res;
+      if (!specificStyleOptions[style]) {
+        throw new Error("Style not found");
+      }
+
+      return specificStyleOptions[style];
     } catch (err) {
       console.error(err);
     }
@@ -429,18 +456,20 @@
    */
   async function getEditStyles(event) {
     try {
-      let res;
-      if (event.target.dataset["type"]) {
-        res = await fetch("/styles/" + event.target.dataset["type"]);
-      } else {
-        res = await fetch("/styles/div");
-      }
-      await statusCheck(res);
-      res = await res.json();
+      let res = event.target.dataset["type"] ? broadStyleOptions[event.target.dataset["type"]] : broadStyleOptions["div"];
+
+      // if (event.target.dataset["type"]) {
+      //   res = await fetch("/api/styles/" + event.target.dataset["type"]);
+      // } else {
+      //   res = await fetch("/api/styles/div");
+      // }
+      // await statusCheck(res);
+      // res = await res.json();
       
       return res;
     } catch (err) {
       console.error(err);
+      alert("An error occurred: " + err);
     }
   }
 

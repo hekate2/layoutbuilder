@@ -1,0 +1,23 @@
+{
+  "main" : [
+    "text",
+    "background"
+  ],
+  "div": [
+    "layout + dimensions",
+    "text",
+    "border",
+    "background",
+    "flex"
+  ],
+  "img": [
+    "image",
+    "layout + dimensions",
+    "border"
+  ],
+  "text": [
+    "background",
+    "layout + dimensions",
+    "text"
+  ]
+}

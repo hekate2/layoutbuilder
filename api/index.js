@@ -16,7 +16,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 /** Retrieves all potential properties for a type of object */
-app.get("/styles/:object/properties", async (req, res) => {
+app.get("/api/styles/:object/properties", async (req, res) => {
   let object = req.params["object"];
 
   try {
@@ -36,7 +36,7 @@ app.get("/styles/:object/properties", async (req, res) => {
 });
 
 /** Retrieves all possible categories of styles for a particular object */
-app.get("/styles/:object", async (req, res) => {
+app.get("/api/styles/:object", async (req, res) => {
   let object = req.params["object"];
     try {
       let results = await fs.readFile('objects.json', 'utf8');
@@ -50,11 +50,18 @@ app.get("/styles/:object", async (req, res) => {
       }
       
     } catch(err) {
+      console.error(err);
       res.status(500).type('text')
       .send("Oops, something went wrong on the server");
     }
 });
 
-app.use(express.static('public'));
+app.get("/api/", (req, res) => {
+  res.type('text').send("Hello World!");
+});
+
+// app.use(express.static('public'));
 const PORT = process.env.PORT || 8000;
 app.listen(PORT);
+
+module.exports = app;
